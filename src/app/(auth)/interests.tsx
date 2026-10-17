@@ -9,6 +9,7 @@ import { MenuDotsCircleIcon } from '@solar-icons/react-native/outline/menu-dots-
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, useColorScheme, View } from "react-native";
+import { KeyboardStickyView } from "react-native-keyboard-controller";
 import { IconButton, TouchableRipple } from 'react-native-paper';
 import Animated, {
     Easing,
@@ -54,7 +55,7 @@ const interests = [
     },
     {
         id: 7,
-        name: "Others",
+        name: "Other Crafts",
         description: "Something else"
     }
 ];
@@ -196,7 +197,9 @@ export default function Interests() {
                             })}
                         </View>
                     </View>
+                </ScrollView>
 
+                <KeyboardStickyView offset={{ closed: 0, opened: 20 }}>
                     <View className="pt-2 px-16 gap-2 flex-row justify-center items-center">
                         <View>
                             <IconButton
@@ -211,6 +214,10 @@ export default function Interests() {
                                     height: 62,
                                     width: 62,
                                     borderRadius: 35,
+                                }}
+                                contentStyle={{
+                                    height: 62,
+                                    width: 62,
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                 }}
@@ -259,7 +266,7 @@ export default function Interests() {
                             </Pressable>
                         </Animated.View>
                     </View>
-                </ScrollView>
+                </KeyboardStickyView>
             </SafeAreaView>
         </ThemedView>
     );

@@ -15,6 +15,7 @@ import CountryPicker, {
     Flag,
     Theme,
 } from 'react-native-country-picker-modal';
+import { KeyboardStickyView } from "react-native-keyboard-controller";
 import { Button, IconButton, TextInput } from "react-native-paper";
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withSequence, withSpring, withTiming } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -227,7 +228,9 @@ export default function Profile() {
                                 </Button>
                             </View>
                         </View>
+                    </ScrollView>
 
+                    <KeyboardStickyView offset={{ closed: 0, opened: 20 }}>
                         <View className="pt-2 px-16 gap-2 flex-row justify-center items-center">
                             <View>
                                 <IconButton
@@ -242,6 +245,10 @@ export default function Profile() {
                                         height: 62,
                                         width: 62,
                                         borderRadius: 35,
+                                    }}
+                                    contentStyle={{
+                                        height: 62,
+                                        width: 62,
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                     }}
@@ -249,7 +256,7 @@ export default function Profile() {
                             </View>
                             <Animated.View style={[bounceStyle, { alignItems: 'center', width: 'auto' }]}>
                                 <Pressable
-                                    onPress={() => router.navigate({ pathname: '/(auth)/profile' })}
+                                    onPress={() => router.navigate({ pathname: '/(auth)/signup' })}
                                     onPressIn={() => {
                                         setPressed(true);
                                         pressScale.value = withSpring(0.75, { damping: 14, stiffness: 400 });
@@ -289,7 +296,7 @@ export default function Profile() {
                                 </Pressable>
                             </Animated.View>
                         </View>
-                    </ScrollView>
+                    </KeyboardStickyView>
                 </SafeAreaView>
             </ThemedView>
 
