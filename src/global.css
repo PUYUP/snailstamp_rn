@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Caveat+Brush&family=Gaegu:wght@300;400;700&family=Gluten:wght@100..900&family=Playpen+Sans:wght@100..800&family=Schoolbell&display=swap');
+
+/* This file adds the requisite utility classes for Tailwind to work. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --font-display:
     Spline Sans, Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji,
@@ -6,4 +13,48 @@
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   --font-rounded: 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif;
   --font-serif: Georgia, 'Times New Roman', serif;
+}
+
+/* Aliases matching the fontFamily names registered in useFonts */
+@font-face {
+  font-family: 'BubblegumSans-Regular';
+  src: local('Bubblegum Sans'), local('BubblegumSans-Regular');
+}
+
+@font-face {
+  font-family: 'CaveatBrush-Regular';
+  src: local('Caveat Brush'), local('CaveatBrush-Regular');
+}
+
+@font-face {
+  font-family: 'Gaegu-Light';
+  font-weight: 300;
+  src: local('Gaegu Light'), local('Gaegu-Light');
+}
+
+@font-face {
+  font-family: 'Gaegu-Regular';
+  font-weight: 400;
+  src: local('Gaegu'), local('Gaegu-Regular');
+}
+
+@font-face {
+  font-family: 'Gaegu-Bold';
+  font-weight: 700;
+  src: local('Gaegu Bold'), local('Gaegu-Bold');
+}
+
+@font-face {
+  font-family: 'Gluten-Regular';
+  src: local('Gluten'), local('Gluten-Regular');
+}
+
+@font-face {
+  font-family: 'PlaypenSans-Regular';
+  src: local('Playpen Sans'), local('PlaypenSans-Regular');
+}
+
+@font-face {
+  font-family: 'Schoolbell-Regular';
+  src: local('Schoolbell'), local('Schoolbell-Regular');
 }
