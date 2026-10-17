@@ -2,11 +2,12 @@ import { MapPins } from "@/components/map-pins";
 import { PlayfulBackground } from "@/components/playful-background";
 import { StickerText } from "@/components/sticker-text";
 import { ThemedView } from "@/components/themed-view";
-import { BottomTabInset, Colors, MaxContentWidth, Spacing } from '@/constants/theme';
+import { Colors, MaxContentWidth, Spacing } from '@/constants/theme';
 import { ConfettiMinimalisticIcon } from '@solar-icons/react-native/bold-duotone/confetti-minimalistic';
 import { TelescopeIcon } from '@solar-icons/react-native/bold-duotone/telescope';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
+import { useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, useColorScheme, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -55,6 +56,7 @@ export default function Index() {
     const scheme = useColorScheme();
     const isDark = scheme === 'dark';
     const pressScale = useSharedValue(1);
+    const [pressed, setPressed] = useState(false);
 
     const bounceStyle = useAnimatedStyle(() => ({
         transform: [{ scale: pressScale.value }],
@@ -70,7 +72,7 @@ export default function Index() {
                         justifyContent: 'space-around',
                         paddingTop: 32,
                         paddingBottom: 32,
-                        flex: 1,
+                        flexGrow: 1,
                     }}
                 >
                     <View className="flex justify-center items-center w-full mb-6">
@@ -165,14 +167,16 @@ export default function Index() {
                         <View className="pt-6">
                             <Animated.View style={bounceStyle}>
                                 <Pressable
-                                    onPress={() => { router.navigate({ pathname: '/(auth)/interests' }) }}
+                                    onPress={() => router.navigate({ pathname: '/(auth)/interests' })}
                                     onPressIn={() => {
+                                        setPressed(true);
                                         pressScale.value = withSpring(0.75, { damping: 14, stiffness: 400 });
                                     }}
                                     onPressOut={() => {
+                                        setPressed(false);
                                         pressScale.value = withSpring(1, { damping: 6, stiffness: 300 });
                                     }}
-                                    style={({ pressed }) => ({
+                                    style={{
                                         backgroundColor: pressed
                                             ? (isDark ? Colors.dark.textForeground : Colors.light.textForeground)
                                             : (isDark ? Colors.dark.backgroundElement : Colors.light.textPrimary),
@@ -184,14 +188,20 @@ export default function Index() {
                                         shadowOpacity: 0.2,
                                         shadowRadius: 4,
                                         elevation: 4,
-                                        display: 'flex',
                                         flexDirection: 'row',
                                         gap: 8,
                                         alignItems: 'center',
-                                    })}
+                                    }}
                                 >
-                                    <ConfettiMinimalisticIcon color={isDark ? Colors.dark.background : Colors.light.background} size={36} />
-                                    <Text style={{ fontFamily: 'Gaegu-Regular', fontSize: 20, color: isDark ? Colors.dark.background : Colors.light.background }}>
+                                    <ConfettiMinimalisticIcon
+                                        color={isDark ? Colors.dark.background : Colors.light.background}
+                                        size={36}
+                                    />
+                                    <Text style={{
+                                        fontFamily: 'Gaegu-Regular',
+                                        fontSize: 20,
+                                        color: isDark ? Colors.dark.background : Colors.light.background,
+                                    }}>
                                         Get Started
                                     </Text>
                                 </Pressable>
@@ -216,11 +226,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         gap: Spacing.three,
-        paddingBottom: BottomTabInset,
         maxWidth: MaxContentWidth,
         width: '100%',
     },
     scrollView: {
+        width: '100%',
         backgroundColor: 'transparent',
         flex: 1,
     },

@@ -4,6 +4,7 @@ import { BottomTabInset, Colors, MaxContentWidth, Spacing } from "@/constants/th
 import { ForwardIcon } from '@solar-icons/react-native/bold-duotone/forward';
 import { GlobeIcon } from '@solar-icons/react-native/bold-duotone/globe';
 import { MasksIcon } from '@solar-icons/react-native/bold-duotone/masks';
+import { ReplyIcon } from '@solar-icons/react-native/bold-duotone/reply';
 import { UserIdIcon } from '@solar-icons/react-native/bold-duotone/user-id';
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
@@ -27,6 +28,7 @@ export default function Profile() {
     const [countryCode, setCountryCode] = useState<CountryCode>("ID");
     const [selectedCountry, setSelectedCountry] = useState<Country>();
     const [countryVisible, setCountryVisible] = useState(false);
+    const [pressed, setPressed] = useState(false);
 
     const countryTheme: Theme = {
         backgroundColor: isDark ? Colors.dark.background : Colors.light.background,
@@ -80,7 +82,6 @@ export default function Profile() {
                         contentContainerStyle={{
                             justifyContent: 'space-between',
                             paddingTop: 32,
-                            paddingBottom: 32,
                             flexGrow: 1,
                         }}
                     >
@@ -98,6 +99,7 @@ export default function Profile() {
                                             display: 'flex',
                                             alignItems: 'center',
                                             gap: 10,
+                                            flexShrink: 1,
                                         }}>
                                         Let’s get to know you!
                                     </Text>
@@ -226,17 +228,37 @@ export default function Profile() {
                             </View>
                         </View>
 
-                        <View className="pt-2 px-16">
+                        <View className="pt-2 px-16 gap-2 flex-row justify-center items-center">
+                            <View>
+                                <IconButton
+                                    onPress={() => router.back()}
+                                    mode={'contained'}
+                                    icon={() => {
+                                        return (
+                                            <ReplyIcon size={32} color={isDark ? Colors.dark.textPrimary : Colors.light.textPrimary} />
+                                        )
+                                    }}
+                                    style={{
+                                        height: 62,
+                                        width: 62,
+                                        borderRadius: 35,
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                    }}
+                                />
+                            </View>
                             <Animated.View style={[bounceStyle, { alignItems: 'center', width: 'auto' }]}>
                                 <Pressable
-                                    onPress={() => { router.navigate({ pathname: '/(auth)/profile' }) }}
+                                    onPress={() => router.navigate({ pathname: '/(auth)/profile' })}
                                     onPressIn={() => {
+                                        setPressed(true);
                                         pressScale.value = withSpring(0.75, { damping: 14, stiffness: 400 });
                                     }}
                                     onPressOut={() => {
+                                        setPressed(false);
                                         pressScale.value = withSpring(1, { damping: 6, stiffness: 300 });
                                     }}
-                                    style={({ pressed }) => ({
+                                    style={{
                                         backgroundColor: pressed
                                             ? (isDark ? Colors.dark.textForeground : Colors.light.textForeground)
                                             : (isDark ? Colors.dark.backgroundElement : Colors.light.textPrimary),
@@ -248,16 +270,22 @@ export default function Profile() {
                                         shadowOpacity: 0.2,
                                         shadowRadius: 4,
                                         elevation: 4,
-                                        display: 'flex',
                                         flexDirection: 'row',
                                         gap: 8,
                                         alignItems: 'center',
-                                    })}
+                                    }}
                                 >
-                                    <Text style={{ fontFamily: 'Gaegu-Regular', fontSize: 20, color: isDark ? Colors.dark.background : Colors.light.background }}>
+                                    <Text style={{
+                                        fontFamily: 'Gaegu-Regular',
+                                        fontSize: 20,
+                                        color: isDark ? Colors.dark.background : Colors.light.background,
+                                    }}>
                                         Continue
                                     </Text>
-                                    <ForwardIcon color={isDark ? Colors.dark.background : Colors.light.background} size={36} />
+                                    <ForwardIcon
+                                        color={isDark ? Colors.dark.background : Colors.light.background}
+                                        size={36}
+                                    />
                                 </Pressable>
                             </Animated.View>
                         </View>
@@ -352,5 +380,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         paddingHorizontal: Spacing.four,
         flex: 1,
+        width: '100%',
     },
 });

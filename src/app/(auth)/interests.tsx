@@ -3,12 +3,13 @@ import { ThemedView } from "@/components/themed-view";
 import { BottomTabInset, Colors, MaxContentWidth, Spacing } from "@/constants/theme";
 import { CheckCircleIcon } from '@solar-icons/react-native/bold-duotone/check-circle';
 import { ForwardIcon } from '@solar-icons/react-native/bold-duotone/forward';
+import { ReplyIcon } from "@solar-icons/react-native/bold-duotone/reply";
 import { Rocket2Icon } from '@solar-icons/react-native/bold-duotone/rocket-2';
 import { MenuDotsCircleIcon } from '@solar-icons/react-native/outline/menu-dots-circle';
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, useColorScheme, View } from "react-native";
-import { TouchableRipple } from 'react-native-paper';
+import { IconButton, TouchableRipple } from 'react-native-paper';
 import Animated, {
     Easing,
     useAnimatedStyle,
@@ -96,6 +97,7 @@ export default function Interests() {
     const scheme = useColorScheme();
     const isDark = scheme === 'dark';
     const pressScale = useSharedValue(1);
+    const [pressed, setPressed] = useState(false);
 
     const bounceStyle = useAnimatedStyle(() => ({
         transform: [{ scale: pressScale.value }],
@@ -136,10 +138,10 @@ export default function Interests() {
                         justifyContent: 'space-between',
                         paddingTop: 32,
                         paddingBottom: 32,
-                        flex: 1,
+                        flexGrow: 1,
                     }}
                 >
-                    <View>
+                    <View style={{ width: '100%' }}>
                         <View className="mb-4">
                             <View className="flex flex-row items-center gap-6 mb-4">
                                 <Animated.View style={[{ width: 70, height: 70, transformOrigin: 'top center' }, signpostAnimatedStyle]}>
@@ -153,6 +155,7 @@ export default function Interests() {
                                         display: 'flex',
                                         alignItems: 'center',
                                         gap: 10,
+                                        flexShrink: 1,
                                     }}>
                                     Let’s start from your
                                 </Text>
@@ -194,17 +197,38 @@ export default function Interests() {
                         </View>
                     </View>
 
-                    <View className="pt-2 px-16">
+                    <View className="pt-2 px-16 gap-2 flex-row justify-center items-center">
+                        <View>
+                            <IconButton
+                                onPress={() => router.back()}
+                                mode={'contained'}
+                                icon={() => {
+                                    return (
+                                        <ReplyIcon size={32} color={isDark ? Colors.dark.textPrimary : Colors.light.textPrimary} />
+                                    )
+                                }}
+                                style={{
+                                    height: 62,
+                                    width: 62,
+                                    borderRadius: 35,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}
+                            />
+                        </View>
+
                         <Animated.View style={[bounceStyle, { alignItems: 'center', width: 'auto' }]}>
                             <Pressable
-                                onPress={() => { router.navigate({ pathname: '/(auth)/profile' }) }}
+                                onPress={() => router.navigate({ pathname: '/(auth)/profile' })}
                                 onPressIn={() => {
+                                    setPressed(true);
                                     pressScale.value = withSpring(0.75, { damping: 14, stiffness: 400 });
                                 }}
                                 onPressOut={() => {
+                                    setPressed(false);
                                     pressScale.value = withSpring(1, { damping: 6, stiffness: 300 });
                                 }}
-                                style={({ pressed }) => ({
+                                style={{
                                     backgroundColor: pressed
                                         ? (isDark ? Colors.dark.textForeground : Colors.light.textForeground)
                                         : (isDark ? Colors.dark.backgroundElement : Colors.light.textPrimary),
@@ -216,16 +240,22 @@ export default function Interests() {
                                     shadowOpacity: 0.2,
                                     shadowRadius: 4,
                                     elevation: 4,
-                                    display: 'flex',
                                     flexDirection: 'row',
                                     gap: 8,
                                     alignItems: 'center',
-                                })}
+                                }}
                             >
-                                <Text style={{ fontFamily: 'Gaegu-Regular', fontSize: 20, color: isDark ? Colors.dark.background : Colors.light.background }}>
+                                <Text style={{
+                                    fontFamily: 'Gaegu-Regular',
+                                    fontSize: 20,
+                                    color: isDark ? Colors.dark.background : Colors.light.background,
+                                }}>
                                     Continue
                                 </Text>
-                                <ForwardIcon color={isDark ? Colors.dark.background : Colors.light.background} size={36} />
+                                <ForwardIcon
+                                    color={isDark ? Colors.dark.background : Colors.light.background}
+                                    size={36}
+                                />
                             </Pressable>
                         </Animated.View>
                     </View>
@@ -255,5 +285,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         paddingHorizontal: Spacing.four,
         flex: 1,
+        width: '100%',
     },
 });
