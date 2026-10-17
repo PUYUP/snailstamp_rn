@@ -1,14 +1,15 @@
 import { PlayfulBackground } from "@/components/playful-background";
 import { ThemedView } from "@/components/themed-view";
 import { BottomTabInset, Colors, MaxContentWidth, Spacing } from "@/constants/theme";
-import { ForwardIcon } from '@solar-icons/react-native/bold-duotone/forward';
+import { CheckIcon } from '@solar-icons/react-native/bold-duotone/check';
+import { LetterUnreadIcon } from '@solar-icons/react-native/bold-duotone/letter-unread';
 import { ReplyIcon } from "@solar-icons/react-native/bold-duotone/reply";
 import { ShieldStarIcon } from '@solar-icons/react-native/bold-duotone/shield-star';
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, useColorScheme, View } from "react-native";
 import { KeyboardStickyView } from "react-native-keyboard-controller";
-import { IconButton } from 'react-native-paper';
+import { IconButton, TextInput } from 'react-native-paper';
 import Animated, {
     Easing,
     useAnimatedStyle,
@@ -26,6 +27,7 @@ export default function SignUp() {
     const isDark = scheme === 'dark';
     const pressScale = useSharedValue(1);
     const [pressed, setPressed] = useState(false);
+    const [email, setEmail] = useState("");
 
     const bounceStyle = useAnimatedStyle(() => ({
         transform: [{ scale: pressScale.value }],
@@ -93,6 +95,67 @@ export default function SignUp() {
                                 Create your account to discover collections, share your treasures, and connect with fellow Snailers around the world.
                             </Text>
                         </View>
+
+
+                        <View className="mt-6">
+                            <Text
+                                className="text-2xl leading-8 mb-3"
+                                style={{
+                                    fontFamily: 'Schoolbell-Regular',
+                                    color: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
+                                }}
+                            >
+                                Enter your email address
+                            </Text>
+                            <TextInput
+                                mode="flat"
+                                placeholder="Your email"
+                                placeholderTextColor={isDark ? Colors.dark.textSecondary : Colors.light.textSecondary}
+                                underlineColor="transparent"
+                                activeUnderlineColor="transparent"
+                                onChangeText={(e) => setEmail(e)}
+                                value={email}
+                                style={{
+                                    color: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
+                                    borderTopLeftRadius: 40,
+                                    borderBottomLeftRadius: 40,
+                                    borderTopRightRadius: 40,
+                                    borderBottomRightRadius: 40,
+                                    height: 70,
+                                    paddingLeft: 20,
+                                    fontSize: 24,
+                                    elevation: 2,
+                                    shadowColor: "#000",
+                                    shadowOffset: {
+                                        width: 0,
+                                        height: 2,
+                                    },
+                                    shadowOpacity: 0.25,
+                                    shadowRadius: 3.84,
+                                }}
+                                underlineStyle={{
+                                    borderWidth: 0,
+                                    height: 0,
+                                }}
+                                contentStyle={{
+                                    fontFamily: 'Gaegu-Light',
+                                }}
+                                left={
+                                    <TextInput.Icon
+                                        style={{
+                                            marginLeft: 28,
+                                        }}
+                                        size={42}
+                                        icon={({ size }) => (
+                                            <LetterUnreadIcon
+                                                size={size}
+                                                color={isDark ? Colors.dark.textPrimary : Colors.light.textPrimary}
+                                            />
+                                        )}
+                                    />
+                                }
+                            />
+                        </View>
                     </View>
                 </ScrollView>
 
@@ -123,7 +186,7 @@ export default function SignUp() {
 
                         <Animated.View style={[bounceStyle, { alignItems: 'center', width: 'auto' }]}>
                             <Pressable
-                                onPress={() => router.navigate({ pathname: '/(auth)/profile' })}
+                                onPress={() => { }}
                                 onPressIn={() => {
                                     setPressed(true);
                                     pressScale.value = withSpring(0.75, { damping: 14, stiffness: 400 });
@@ -149,17 +212,17 @@ export default function SignUp() {
                                     alignItems: 'center',
                                 }}
                             >
+                                <CheckIcon
+                                    color={isDark ? Colors.dark.background : Colors.light.background}
+                                    size={36}
+                                />
                                 <Text style={{
                                     fontFamily: 'Gaegu-Regular',
                                     fontSize: 20,
                                     color: isDark ? Colors.dark.background : Colors.light.background,
                                 }}>
-                                    Continue
+                                    Finish
                                 </Text>
-                                <ForwardIcon
-                                    color={isDark ? Colors.dark.background : Colors.light.background}
-                                    size={36}
-                                />
                             </Pressable>
                         </Animated.View>
                     </View>
