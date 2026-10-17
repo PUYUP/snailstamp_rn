@@ -2,6 +2,7 @@ import { PlayfulBackground } from "@/components/playful-background";
 import { ThemedView } from "@/components/themed-view";
 import { BottomTabInset, Colors, MaxContentWidth, Spacing } from "@/constants/theme";
 import { CheckCircleIcon } from '@solar-icons/react-native/bold-duotone/check-circle';
+import { ForwardIcon } from '@solar-icons/react-native/bold-duotone/forward';
 import { Rocket2Icon } from '@solar-icons/react-native/bold-duotone/rocket-2';
 import { MenuDotsCircleIcon } from '@solar-icons/react-native/outline/menu-dots-circle';
 import { useRouter } from "expo-router";
@@ -140,7 +141,7 @@ export default function Interests() {
                 >
                     <View>
                         <View className="mb-4">
-                            <View className="flex flex-row items-center gap-6 mb-2">
+                            <View className="flex flex-row items-center gap-6 mb-4">
                                 <Animated.View style={[{ width: 70, height: 70, transformOrigin: 'top center' }, signpostAnimatedStyle]}>
                                     <Rocket2Icon size={70} color={isDark ? Colors.dark.textPrimary : Colors.light.textPrimary} />
                                 </Animated.View>
@@ -157,7 +158,7 @@ export default function Interests() {
                                 </Text>
                             </View>
                             <Text
-                                className="text-xl"
+                                className="text-2xl"
                                 style={{
                                     fontFamily: 'Gaegu-Light',
                                     color: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
@@ -196,7 +197,7 @@ export default function Interests() {
                     <View className="pt-2 px-16">
                         <Animated.View style={[bounceStyle, { alignItems: 'center', width: 'auto' }]}>
                             <Pressable
-                                onPress={() => { router.navigate({ pathname: '/(auth)/interests' }) }}
+                                onPress={() => { router.navigate({ pathname: '/(auth)/profile' }) }}
                                 onPressIn={() => {
                                     pressScale.value = withSpring(0.75, { damping: 14, stiffness: 400 });
                                 }}
@@ -224,6 +225,7 @@ export default function Interests() {
                                 <Text style={{ fontFamily: 'Gaegu-Regular', fontSize: 20, color: isDark ? Colors.dark.background : Colors.light.background }}>
                                     Continue
                                 </Text>
+                                <ForwardIcon color={isDark ? Colors.dark.background : Colors.light.background} size={36} />
                             </Pressable>
                         </Animated.View>
                     </View>

@@ -52,6 +52,7 @@ export default function TabLayout() {
         <Stack>
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="(auth)/interests" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)/profile" options={{ headerShown: false }} />
         </Stack>
       </PaperProvider>
     </ThemeProvider>

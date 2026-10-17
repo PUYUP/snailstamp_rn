@@ -153,10 +153,10 @@ export default function Index() {
                         <View style={{ maxWidth: MaxContentWidth, marginLeft: 'auto', marginRight: 'auto' }}>
                             <Text style={{
                                 fontFamily: 'Schoolbell-Regular',
-                                fontSize: 17,
+                                fontSize: 18,
                                 textAlign: 'center',
                                 color: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
-                                lineHeight: 26,
+                                lineHeight: 30,
                             }}>
                                 A little world of collected things, journaling, and analog crafts worth sharing.
                             </Text>
