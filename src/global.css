@@ -15,6 +15,14 @@
   --font-serif: Georgia, 'Times New Roman', serif;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #000 !important;
+}
+
 /* Aliases matching the fontFamily names registered in useFonts */
 @font-face {
   font-family: 'BubblegumSans-Regular';

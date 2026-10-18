@@ -2,20 +2,24 @@ import { Colors } from '@/constants/theme';
 import { BoxIcon } from '@solar-icons/react-native/bold-duotone/box';
 import { CopyAddIcon } from '@solar-icons/react-native/bold-duotone/copy-add';
 import { EarthIcon } from '@solar-icons/react-native/bold-duotone/earth';
+import { NotebookIcon } from '@solar-icons/react-native/bold-duotone/notebook';
 import { UserIcon } from '@solar-icons/react-native/bold-duotone/user';
 import { router, Tabs } from 'expo-router';
 import { Pressable, StyleSheet, Text, useColorScheme, View } from 'react-native';
+import { IconButton } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const TAB_ICONS: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
     discover: EarthIcon,
     collections: BoxIcon,
+    journaling: NotebookIcon,
     profile: UserIcon,
 };
 
 const TAB_LABELS: Record<string, string> = {
     discover: 'Discover',
-    collections: 'Collection',
+    collections: 'Collectie',
+    journaling: 'Journale',
     profile: 'Profile',
 };
 
@@ -86,9 +90,13 @@ function FloatingTabBar({ state, navigation }: BottomTabBarProps) {
                 onPress={() => router.push('/(dash)/discover')} // ganti dengan aksi/route kamu
                 style={[styles.plusButton]}
             >
-                <View style={styles.plus}>
-                    <CopyAddIcon size={62} color={isDark ? Colors.dark.textPrimary : Colors.light.textPrimary} />
-                </View>
+                <IconButton
+                    icon={() => (
+                        <CopyAddIcon size={62} color={isDark ? Colors.dark.textPrimary : Colors.light.textPrimary} />
+                    )}
+                    size={62}
+                    onPress={() => console.log('Pressed')}
+                />
             </Pressable>
         </View>
     );
@@ -98,7 +106,8 @@ export default function DashLayout() {
     return (
         <Tabs screenOptions={{ headerShown: false }} tabBar={(props) => <FloatingTabBar {...props} />}>
             <Tabs.Screen name="discover" options={{ title: 'Discover' }} />
-            <Tabs.Screen name="collections" options={{ title: 'Collection' }} />
+            <Tabs.Screen name="collections" options={{ title: 'Collectie' }} />
+            <Tabs.Screen name="journaling" options={{ title: 'Journale' }} />
             <Tabs.Screen name="profile" options={{ title: 'Profile' }} />
         </Tabs>
     );
@@ -114,7 +123,7 @@ const styles = StyleSheet.create({
     },
     tabs: {
         flexDirection: 'row',
-        gap: 18,
+        gap: 8,
     },
     tabItem: {
         alignItems: 'center',
@@ -138,12 +147,6 @@ const styles = StyleSheet.create({
         width: 52,
         height: 52,
         borderRadius: 26,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    plus: {
-        width: 22,
-        height: 22,
         alignItems: 'center',
         justifyContent: 'center',
     },

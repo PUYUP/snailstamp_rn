@@ -83,7 +83,7 @@ export default function SignUp() {
                                 </Text>
                             </View>
                             <Text
-                                className="text-3xl"
+                                className="text-2xl"
                                 style={{
                                     fontFamily: 'Gaegu-Light',
                                     color: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
@@ -117,6 +117,7 @@ export default function SignUp() {
                                 keyboardType='email-address'
                                 autoCapitalize='none'
                                 style={{
+                                    backgroundColor: 'transparent',
                                     color: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
                                     borderTopLeftRadius: 40,
                                     borderBottomLeftRadius: 40,
@@ -161,7 +162,7 @@ export default function SignUp() {
                 </ScrollView>
 
                 <KeyboardStickyView offset={{ closed: 0, opened: 20 }}>
-                    <View className="pt-2 px-16 gap-2 flex-row justify-center items-center">
+                    <View className="pt-2 px-16 gap-2 flex-row justify-center items-center pb-6">
                         <View>
                             <IconButton
                                 onPress={() => router.back()}

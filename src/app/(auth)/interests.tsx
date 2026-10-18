@@ -162,7 +162,7 @@ export default function Interests() {
                                 </Text>
                             </View>
                             <Text
-                                className="text-3xl"
+                                className="text-2xl"
                                 style={{
                                     fontFamily: 'Gaegu-Light',
                                     color: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
@@ -200,7 +200,7 @@ export default function Interests() {
                 </ScrollView>
 
                 <KeyboardStickyView offset={{ closed: 0, opened: 20 }}>
-                    <View className="pt-2 px-16 gap-2 flex-row justify-center items-center">
+                    <View className="pt-2 px-16 gap-2 flex-row justify-center items-center pb-6">
                         <View>
                             <IconButton
                                 onPress={() => router.back()}

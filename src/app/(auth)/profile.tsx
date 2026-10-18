@@ -82,6 +82,7 @@ export default function Profile() {
                         contentContainerStyle={{
                             justifyContent: 'space-between',
                             paddingTop: 32,
+                            paddingBottom: 24,
                             flexGrow: 1,
                         }}
                     >
@@ -105,7 +106,7 @@ export default function Profile() {
                                     </Text>
                                 </View>
                                 <Text
-                                    className="text-3xl"
+                                    className="text-2xl"
                                     style={{
                                         fontFamily: 'Gaegu-Light',
                                         color: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
@@ -229,7 +230,7 @@ export default function Profile() {
                         </View>
                     </ScrollView>
 
-                    <View className="pt-2 px-16 gap-2 flex-row justify-center items-center">
+                    <View className="pt-2 px-16 gap-2 flex-row justify-center items-center pb-6">
                         <View>
                             <IconButton
                                 onPress={() => router.back()}
