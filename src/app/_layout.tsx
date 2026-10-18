@@ -51,12 +51,10 @@ export default function TabLayout() {
       <PaperProvider theme={paperTheme}>
         <KeyboardProvider>
           <AnimatedSplashOverlay />
-          <Stack>
-            <Stack.Screen name="index" options={{ headerShown: false }} />
-            <Stack.Screen name="(auth)/interests" options={{ headerShown: false }} />
-            <Stack.Screen name="(auth)/profile" options={{ headerShown: false }} />
-            <Stack.Screen name="(auth)/signup" options={{ headerShown: false }} />
-            <Stack.Screen name="(auth)/pinpad" options={{ headerShown: false }} />
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="index" />
+            <Stack.Screen name="(auth)" />
+            <Stack.Screen name="(dash)" />
           </Stack>
         </KeyboardProvider>
       </PaperProvider>

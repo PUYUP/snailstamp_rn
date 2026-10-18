@@ -174,10 +174,18 @@ export default function PinPad() {
                             hasError={Boolean(errorMessage)}
                         />
 
+                        {/* On-screen Numeric Keypad */}
+                        <NumericKeypad
+                            onPressDigit={handlePressDigit}
+                            onPressBackspace={handlePressBackspace}
+                            onToggleMask={() => setIsMasked((prev) => !prev)}
+                            isMasked={isMasked}
+                        />
+
                         {/* Error message indicator */}
                         {errorMessage ? (
                             <View
-                                className="flex-row items-center justify-center gap-2 mb-2 px-4 py-2 self-center"
+                                className="flex-row items-center justify-center gap-2 mb-2 px-4 py-2 mt-12 self-center"
                                 style={{
                                     backgroundColor: '#FFEBEE',
                                     borderRadius: 16,
@@ -195,14 +203,6 @@ export default function PinPad() {
                                 </Text>
                             </View>
                         ) : null}
-
-                        {/* On-screen Numeric Keypad */}
-                        <NumericKeypad
-                            onPressDigit={handlePressDigit}
-                            onPressBackspace={handlePressBackspace}
-                            onToggleMask={() => setIsMasked((prev) => !prev)}
-                            isMasked={isMasked}
-                        />
                     </View>
 
                     {/* Bottom Action Row: Back Button & Next/Finish Button */}
