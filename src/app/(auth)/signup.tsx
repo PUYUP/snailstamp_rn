@@ -1,7 +1,7 @@
 import { PlayfulBackground } from "@/components/playful-background";
 import { ThemedView } from "@/components/themed-view";
-import { BottomTabInset, Colors, MaxContentWidth, Spacing } from "@/constants/theme";
-import { CheckIcon } from '@solar-icons/react-native/bold-duotone/check';
+import { Colors, MaxContentWidth, Spacing } from "@/constants/theme";
+import { KeyMinimalisticIcon } from '@solar-icons/react-native/bold-duotone/key-minimalistic';
 import { LetterUnreadIcon } from '@solar-icons/react-native/bold-duotone/letter-unread';
 import { ReplyIcon } from "@solar-icons/react-native/bold-duotone/reply";
 import { ShieldStarIcon } from '@solar-icons/react-native/bold-duotone/shield-star';
@@ -83,7 +83,7 @@ export default function SignUp() {
                                 </Text>
                             </View>
                             <Text
-                                className="text-2xl"
+                                className="text-3xl"
                                 style={{
                                     fontFamily: 'Gaegu-Light',
                                     color: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
@@ -95,7 +95,6 @@ export default function SignUp() {
                                 Create your account to discover collections, share your treasures, and connect with fellow Snailers around the world.
                             </Text>
                         </View>
-
 
                         <View className="mt-6">
                             <Text
@@ -115,6 +114,8 @@ export default function SignUp() {
                                 activeUnderlineColor="transparent"
                                 onChangeText={(e) => setEmail(e)}
                                 value={email}
+                                keyboardType='email-address'
+                                autoCapitalize='none'
                                 style={{
                                     color: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
                                     borderTopLeftRadius: 40,
@@ -186,7 +187,8 @@ export default function SignUp() {
 
                         <Animated.View style={[bounceStyle, { alignItems: 'center', width: 'auto' }]}>
                             <Pressable
-                                onPress={() => { }}
+                                disabled={!email || email == ''}
+                                onPress={() => router.push('/(auth)/pinpad')}
                                 onPressIn={() => {
                                     setPressed(true);
                                     pressScale.value = withSpring(0.75, { damping: 14, stiffness: 400 });
@@ -210,9 +212,10 @@ export default function SignUp() {
                                     flexDirection: 'row',
                                     gap: 8,
                                     alignItems: 'center',
+                                    opacity: (!email || email == '') ? 0.5 : 1,
                                 }}
                             >
-                                <CheckIcon
+                                <KeyMinimalisticIcon
                                     color={isDark ? Colors.dark.background : Colors.light.background}
                                     size={36}
                                 />
@@ -221,7 +224,7 @@ export default function SignUp() {
                                     fontSize: 20,
                                     color: isDark ? Colors.dark.background : Colors.light.background,
                                 }}>
-                                    Finish
+                                    Set PIN
                                 </Text>
                             </Pressable>
                         </Animated.View>
@@ -243,7 +246,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         gap: Spacing.three,
-        paddingBottom: BottomTabInset,
         maxWidth: MaxContentWidth,
         width: '100%',
     },

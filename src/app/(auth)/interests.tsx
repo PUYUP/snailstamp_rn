@@ -1,6 +1,6 @@
 import { PlayfulBackground } from "@/components/playful-background";
 import { ThemedView } from "@/components/themed-view";
-import { BottomTabInset, Colors, MaxContentWidth, Spacing } from "@/constants/theme";
+import { Colors, MaxContentWidth, Spacing } from "@/constants/theme";
 import { CheckCircleIcon } from '@solar-icons/react-native/bold-duotone/check-circle';
 import { ForwardIcon } from '@solar-icons/react-native/bold-duotone/forward';
 import { ReplyIcon } from "@solar-icons/react-native/bold-duotone/reply";
@@ -81,7 +81,7 @@ const CustomCheckboxItem = ({
         >
             <View className="py-2 px-2" style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
                 <View>
-                    <Text className="text-md" style={{ fontFamily: 'Schoolbell-Regular' }}>{label}</Text>
+                    <Text className="text-xl" style={{ fontFamily: 'Schoolbell-Regular' }}>{label}</Text>
                     {/* {description && (
                         <Text className="text-base" style={{ fontFamily: 'Gaegu-Light' }}>{description}</Text>
                     )} */}
@@ -162,7 +162,7 @@ export default function Interests() {
                                 </Text>
                             </View>
                             <Text
-                                className="text-2xl"
+                                className="text-3xl"
                                 style={{
                                     fontFamily: 'Gaegu-Light',
                                     color: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
@@ -283,7 +283,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         gap: Spacing.three,
-        paddingBottom: BottomTabInset,
         maxWidth: MaxContentWidth,
         width: '100%',
     },

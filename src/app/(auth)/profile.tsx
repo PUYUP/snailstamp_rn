@@ -1,6 +1,6 @@
 import { PlayfulBackground } from "@/components/playful-background";
 import { ThemedView } from "@/components/themed-view";
-import { BottomTabInset, Colors, MaxContentWidth, Spacing } from "@/constants/theme";
+import { Colors, MaxContentWidth, Spacing } from "@/constants/theme";
 import { ForwardIcon } from '@solar-icons/react-native/bold-duotone/forward';
 import { GlobeIcon } from '@solar-icons/react-native/bold-duotone/globe';
 import { MasksIcon } from '@solar-icons/react-native/bold-duotone/masks';
@@ -15,7 +15,6 @@ import CountryPicker, {
     Flag,
     Theme,
 } from 'react-native-country-picker-modal';
-import { KeyboardStickyView } from "react-native-keyboard-controller";
 import { Button, IconButton, TextInput } from "react-native-paper";
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withSequence, withSpring, withTiming } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -106,7 +105,7 @@ export default function Profile() {
                                     </Text>
                                 </View>
                                 <Text
-                                    className="text-2xl"
+                                    className="text-3xl"
                                     style={{
                                         fontFamily: 'Gaegu-Light',
                                         color: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
@@ -230,73 +229,73 @@ export default function Profile() {
                         </View>
                     </ScrollView>
 
-                    <KeyboardStickyView offset={{ closed: 0, opened: 20 }}>
-                        <View className="pt-2 px-16 gap-2 flex-row justify-center items-center">
-                            <View>
-                                <IconButton
-                                    onPress={() => router.back()}
-                                    mode={'contained'}
-                                    icon={() => {
-                                        return (
-                                            <ReplyIcon size={32} color={isDark ? Colors.dark.textPrimary : Colors.light.textPrimary} />
-                                        )
-                                    }}
-                                    style={{
-                                        height: 62,
-                                        width: 62,
-                                        borderRadius: 35,
-                                    }}
-                                    contentStyle={{
-                                        height: 62,
-                                        width: 62,
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                    }}
-                                />
-                            </View>
-                            <Animated.View style={[bounceStyle, { alignItems: 'center', width: 'auto' }]}>
-                                <Pressable
-                                    onPress={() => router.navigate({ pathname: '/(auth)/signup' })}
-                                    onPressIn={() => {
-                                        setPressed(true);
-                                        pressScale.value = withSpring(0.75, { damping: 14, stiffness: 400 });
-                                    }}
-                                    onPressOut={() => {
-                                        setPressed(false);
-                                        pressScale.value = withSpring(1, { damping: 6, stiffness: 300 });
-                                    }}
-                                    style={{
-                                        backgroundColor: pressed
-                                            ? (isDark ? Colors.dark.textForeground : Colors.light.textForeground)
-                                            : (isDark ? Colors.dark.backgroundElement : Colors.light.textPrimary),
-                                        borderRadius: 32,
-                                        paddingHorizontal: Spacing.four,
-                                        paddingVertical: Spacing.two * 1.5,
-                                        shadowColor: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
-                                        shadowOffset: { width: 0, height: 4 },
-                                        shadowOpacity: 0.2,
-                                        shadowRadius: 4,
-                                        elevation: 4,
-                                        flexDirection: 'row',
-                                        gap: 8,
-                                        alignItems: 'center',
-                                    }}
-                                >
-                                    <Text style={{
-                                        fontFamily: 'Gaegu-Regular',
-                                        fontSize: 20,
-                                        color: isDark ? Colors.dark.background : Colors.light.background,
-                                    }}>
-                                        Continue
-                                    </Text>
-                                    <ForwardIcon
-                                        color={isDark ? Colors.dark.background : Colors.light.background}
-                                        size={36}
-                                    />
-                                </Pressable>
-                            </Animated.View>
+                    <View className="pt-2 px-16 gap-2 flex-row justify-center items-center">
+                        <View>
+                            <IconButton
+                                onPress={() => router.back()}
+                                mode={'contained'}
+                                icon={() => {
+                                    return (
+                                        <ReplyIcon size={32} color={isDark ? Colors.dark.textPrimary : Colors.light.textPrimary} />
+                                    )
+                                }}
+                                style={{
+                                    height: 62,
+                                    width: 62,
+                                    borderRadius: 35,
+                                }}
+                                contentStyle={{
+                                    height: 62,
+                                    width: 62,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}
+                            />
                         </View>
-                    </KeyboardStickyView>
+                        <Animated.View style={[bounceStyle, { alignItems: 'center', width: 'auto' }]}>
+                            <Pressable
+                                disabled={!selectedCountry || (!name || name == '')}
+                                onPress={() => router.navigate({ pathname: '/(auth)/signup' })}
+                                onPressIn={() => {
+                                    setPressed(true);
+                                    pressScale.value = withSpring(0.75, { damping: 14, stiffness: 400 });
+                                }}
+                                onPressOut={() => {
+                                    setPressed(false);
+                                    pressScale.value = withSpring(1, { damping: 6, stiffness: 300 });
+                                }}
+                                style={{
+                                    backgroundColor: pressed
+                                        ? (isDark ? Colors.dark.textForeground : Colors.light.textForeground)
+                                        : (isDark ? Colors.dark.backgroundElement : Colors.light.textPrimary),
+                                    borderRadius: 32,
+                                    paddingHorizontal: Spacing.four,
+                                    paddingVertical: Spacing.two * 1.5,
+                                    shadowColor: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
+                                    shadowOffset: { width: 0, height: 4 },
+                                    shadowOpacity: 0.2,
+                                    shadowRadius: 4,
+                                    elevation: 4,
+                                    flexDirection: 'row',
+                                    gap: 8,
+                                    alignItems: 'center',
+                                    opacity: (!selectedCountry || (!name || name == '')) ? 0.5 : 1,
+                                }}
+                            >
+                                <Text style={{
+                                    fontFamily: 'Gaegu-Regular',
+                                    fontSize: 20,
+                                    color: isDark ? Colors.dark.background : Colors.light.background,
+                                }}>
+                                    Continue
+                                </Text>
+                                <ForwardIcon
+                                    color={isDark ? Colors.dark.background : Colors.light.background}
+                                    size={36}
+                                />
+                            </Pressable>
+                        </Animated.View>
+                    </View>
                 </SafeAreaView>
             </ThemedView>
 
@@ -378,7 +377,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         gap: Spacing.three,
-        paddingBottom: BottomTabInset,
         maxWidth: MaxContentWidth,
         width: '100%',
     },

@@ -17,6 +17,7 @@ import '../global.css';
 
 import { AnimatedSplashOverlay } from '@/components/animated-icon';
 import { PaperThemes } from '@/constants/theme';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -48,13 +49,16 @@ export default function TabLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <PaperProvider theme={paperTheme}>
-        <AnimatedSplashOverlay />
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="(auth)/interests" options={{ headerShown: false }} />
-          <Stack.Screen name="(auth)/profile" options={{ headerShown: false }} />
-          <Stack.Screen name="(auth)/signup" options={{ headerShown: false }} />
-        </Stack>
+        <KeyboardProvider>
+          <AnimatedSplashOverlay />
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name="(auth)/interests" options={{ headerShown: false }} />
+            <Stack.Screen name="(auth)/profile" options={{ headerShown: false }} />
+            <Stack.Screen name="(auth)/signup" options={{ headerShown: false }} />
+            <Stack.Screen name="(auth)/pinpad" options={{ headerShown: false }} />
+          </Stack>
+        </KeyboardProvider>
       </PaperProvider>
     </ThemeProvider>
   );
