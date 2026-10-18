@@ -101,7 +101,7 @@ export default function PinPad() {
                 return;
             }
             // PIN berhasil dikonfirmasi!
-            router.replace('/(auth)/profile');
+            router.replace('/(dash)/discover');
         }
     };
 

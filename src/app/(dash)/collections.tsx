@@ -1,10 +1,10 @@
 import { ThemedView } from "@/components/themed-view";
 import { Text } from "react-native";
 
-export default function Home() {
+export default function Collections() {
     return (
         <ThemedView>
-            <Text>Home</Text>
+            <Text>Collections</Text>
         </ThemedView>
     )
 }
