@@ -167,7 +167,7 @@ export default function Index() {
                         <View className="pt-6">
                             <Animated.View style={bounceStyle}>
                                 <Pressable
-                                    onPress={() => router.navigate({ pathname: '/(auth)/interests' })}
+                                    onPress={() => router.navigate({ pathname: '/(auth)/journal-preview' })}
                                     onPressIn={() => {
                                         setPressed(true);
                                         pressScale.value = withSpring(0.75, { damping: 14, stiffness: 400 });
@@ -202,7 +202,7 @@ export default function Index() {
                                         fontSize: 20,
                                         color: isDark ? Colors.dark.background : Colors.light.background,
                                     }}>
-                                        Get Started
+                                        See in Action
                                     </Text>
                                 </Pressable>
                             </Animated.View>

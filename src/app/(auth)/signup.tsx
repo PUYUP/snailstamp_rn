@@ -117,7 +117,6 @@ export default function SignUp() {
                                 keyboardType='email-address'
                                 autoCapitalize='none'
                                 style={{
-                                    backgroundColor: 'transparent',
                                     color: isDark ? Colors.dark.textForeground : Colors.light.textForeground,
                                     borderTopLeftRadius: 40,
                                     borderBottomLeftRadius: 40,

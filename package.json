@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@expo/ui": "~57.0.23",
+    "@nandorojo/galeria": "^3.1.0",
     "@react-native-vector-icons/get-image": "^13.0.2",
     "@react-native-vector-icons/material-design-icons": "^13.1.5",
     "@solar-icons/react-native": "^2.3.2",
@@ -29,6 +30,7 @@
     "react-native-keyboard-controller": "1.21.9",
     "react-native-paper": "^5.15.3",
     "react-native-reanimated": "^4.7.1",
+    "react-native-reanimated-carousel": "^5.2.0",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.26.0",
     "react-native-svg": "^15.15.4",
